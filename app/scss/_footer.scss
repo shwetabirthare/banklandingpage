@@ -1,0 +1,102 @@
+.footer {
+  background-color: $darkblue;
+  color: $white;
+  padding: 2.5rem;
+  text-align: center;
+  a {
+    color: $white;
+  }
+  @include breakpoint-up(large) {
+    display: grid;
+    grid-template-columns: repeat 2fr (2, 1fr) 2fr;
+    grid-template-rows: repeat(1fr, auto);
+    grid-template-areas:
+      "logo link1 link2 cta"
+      "social link1 link2 copyright";
+    justify-items: start;
+    gap: 1rem;
+  }
+
+  &__logo {
+    @include breakpoint-down(medium) {
+      margin-bottom: 1.875rem;
+    }
+    //margin-bottom: 1.875rem;
+    display: inline-block;
+    @include breakpoint-up(large) {
+      grid-area: logo;
+    }
+  }
+  &__social {
+    @include breakpoint-down(medium) {
+      margin-bottom: 1.875rem;
+    }
+
+    @include breakpoint-up(large) {
+      grid-area: social;
+      align-self: end;
+    }
+    a {
+      display: inline-block;
+      &:not(:last-child) {
+        margin-right: 1em;
+      }
+      svg path {
+        transition: fill 150ms ease-in-out;
+      }
+      &:hover svg path {
+        fill: $limegreen;
+      }
+    }
+  }
+  &__link {
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 2;
+      font-size: 0.9375rem;
+      @include breakpoint-up(large) {
+        align-items: start;
+      }
+      transition: color 150ms ease-in-out;
+      &:hover {
+        color: $limegreen;
+      }
+    }
+    &.col1 {
+      @include breakpoint-up(large) {
+        grid-area: link1;
+      }
+    }
+    &.col2 {
+      @include breakpoint-down(medium) {
+        margin-bottom: 1.875rem;
+      }
+
+      @include breakpoint-up(large) {
+        grid-area: link2;
+      }
+    }
+  }
+  &__cta {
+    @include breakpoint-up(large) {
+      grid-area: cta;
+      text-align: right;
+      justify-self: right;
+    }
+    .button {
+      @include breakpoint-down(medium) {
+        margin-bottom: 1.875rem;
+      }
+    }
+  }
+  &__copyright {
+    font-size: 0.9375rem;
+    @include breakpoint-up(large) {
+      grid-area: copyright;
+      align-self: end;
+      justify-self: end;
+    }
+  }
+}
